@@ -7,3 +7,4 @@ My dotfiles.
 Files added:
 
 - .zshrc
+- hyper config
