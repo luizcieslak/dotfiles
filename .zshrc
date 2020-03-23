@@ -100,6 +100,7 @@ alias yd="yarn dev"
 alias yb="yarn build"
 alias ys="yarn start"
 alias yts="yarn ts:watch"
+alias yf="yarn format"
 
 alias yt="yarn test"
 alias yc="yarn clean"
