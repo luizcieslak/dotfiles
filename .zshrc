@@ -103,19 +103,25 @@ alias yts="yarn ts:watch"
 alias yf="yarn format"
 
 alias yt="yarn test"
+alias ytc="yarn test:coverage"
+alias ytw="yarn test:watch"
 alias yc="yarn clean"
-alias yad="yarn amais-site:dev"
-alias yld="yarn labs-amais:dev"
-alias ydd="yarn diagnoson:dev"
-alias yab="yarn amais-site:build"
-alias ylb="yarn labs-amais:build"
-alias ydb="yarn diagnoson:build"
+alias yz="yarn zip"
+alias ycdk= "yarn dev:cdk"
+
 alias nlb="npx lerna bootstrap"
 alias nlc="npx lerna clean"
 alias nlp="npx lerna publish"
+alias nlpp="npx lerna publish --cd-version patch"
 alias nla="npx lerna add"
 alias lco="npx lerna run cy:open"
 alias yco="yarn cy:open"
+
+alias gk="SHELL=/bin/bash nohup gitkraken&"
+
+alias ydl="yarn dev -H 0.0.0.0"
+
+alias ybs="yarn clean && yarn build && yarn serve"
 
 REACT_EDITOR=code
 
@@ -133,6 +139,9 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH=$PATH:~/.local/bin
+
+# firefox dev edition
+export PATH=/opt/firefox/firefox:$PATH
 
 export NVM_DIR="/home/luizcieslak/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
