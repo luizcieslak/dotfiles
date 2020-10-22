@@ -107,7 +107,7 @@ alias ytc="yarn test:coverage"
 alias ytw="yarn test:watch"
 alias yc="yarn clean"
 alias yz="yarn zip"
-alias ycdk= "yarn dev:cdk"
+alias yk="yarn dev:cdk"
 
 alias nlb="npx lerna bootstrap"
 alias nlc="npx lerna clean"
