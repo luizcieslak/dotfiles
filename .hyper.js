@@ -6,7 +6,7 @@ module.exports = {
   config: {
     // choose either `'stable'` for receiving highly polished,
     // or `'canary'` for less polished but more frequent updates
-    updateChannel: 'canary',
+    updateChannel: 'stable',
 
     // default font size in pixels for all tabs
     fontSize: 12,
@@ -44,7 +44,7 @@ module.exports = {
 
     // terminal background color
     // opacity is only supported on macOS
-    backgroundColor: '#919',
+    backgroundColor: '#111',
 
     // terminal selection color
     selectionColor: 'rgba(248,28,229,0.3)',
@@ -117,9 +117,9 @@ module.exports = {
     // },
 
     // hyperline settings
-    hyperline: {
-      plugins: ['network', 'cpu', 'memory', 'battery'],
-    },
+    // hyperline: {
+    //   plugins: ['network', 'cpu', 'memory', 'battery'],
+    // },
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
@@ -168,14 +168,14 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-    'hyper-material-theme', // "verminal",
+    // 'hyper-material-theme', // "verminal",
     'hyper-active-tab',
     'hyper-highlight-active-pane',
     'hyper-search',
     'hyper-opacity',
     'hyper-tabs-enhanced',
     'hypercwd',
-    'hyperline',
+    // 'hyperline',
     'hyperlinks',
   ],
 
