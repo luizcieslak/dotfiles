@@ -11,6 +11,35 @@ echo "### finished installing chromium ###"
 
 echo "### installing firefox(es) ###"
 
+sudo add-apt-repository ppa:ubuntu-mozilla-daily/ppa
+
+sudo apt-get update -y
+sudo apt-get install firefox-trunk -y
+sudo apt-get install firefox -y
+
+sudo apt-get update -y
+sudo apt-get install firefox -y
+
+sudo cp -rp firefox-83.0b1.tar.bz2 /opt
+cd /opt
+sudo tar xjf firefox-83.0b1.tar.bz2
+sudo rm -rf firefox-67.0b10.tar.bz2
+
+sudo mv firefox firefox-dev
+sudo chown -R $USER /opt/firefox-dev
+
+cat > ~/.local/share/applications/firefoxDeveloperEdition.desktop <<EOL
+[Desktop Entry]
+Encoding=UTF-8
+Name=Firefox Developer Edition
+Exec=/opt/firefox-dev/firefox
+Icon=/opt/firefox-dev/browser/chrome/icons/default/default128.png
+Terminal=false
+Type=Application
+Categories=Network;WebBrowser;Favorite;
+MimeType=text/html;text/xml;application/xhtml_xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp; X-Ayatana-Desktop-Shortcuts=NewWindow;NewIncognitos;
+EOL
+
 echo "### finished installing firefox(es) ###"
 
 
@@ -110,3 +139,12 @@ sudo apt-get update -y
 sudo apt-get install fluxgui -y
 
 echo "### finished installing f.lux ###"
+
+echo "### installing yarn ###"
+
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update -y
+sudo apt-get install yarn -y
+
+echo "### finished installing yarn ###"
