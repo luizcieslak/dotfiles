@@ -2,9 +2,11 @@
 
 My dotfiles.
 
-**Current OS:** Ubuntu 18.04
+**Current OS:** Ubuntu 20.04
 
 Files added:
 
 - .zshrc
 - hyper config
+- prettier
+- install.sh
