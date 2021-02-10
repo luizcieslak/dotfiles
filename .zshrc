@@ -123,6 +123,11 @@ alias ydl="yarn dev -H 0.0.0.0"
 
 alias ybs="yarn clean && yarn build && yarn serve"
 
+alias python=python3
+
+alias hlh="hyperlayout hove"
+alias hlb="hyperlayout bi"
+
 function mata {
   sudo kill -9 $(lsof -t -i:"$1")
   echo process sucessfully killed in port $1
