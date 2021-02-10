@@ -127,7 +127,7 @@ REACT_EDITOR=code
 
 
 #Java
-JAVA_HOME=/usr/lib/jvm/java-8-oracle
+JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export JAVA_HOME
 PATH=$PATH:$JAVA_HOME
 export PATH
@@ -141,7 +141,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:~/.local/bin
 
 # firefox dev edition
-export PATH=/opt/firefox/firefox:$PATH
+export PATH=/opt/firefox/firefox-dev:$PATH
 
 export NVM_DIR="/home/luizcieslak/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
