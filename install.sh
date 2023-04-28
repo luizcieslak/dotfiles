@@ -174,3 +174,7 @@ echo "### finished installing atuin  ###"
 echo "### installing z jumper  ###"
 curl -O https://raw.githubusercontent.com/rupa/z/master/z.sh
 echo "### finished installing z jumper  ###"
+
+echo "### installing openconnect VPN  ###"
+sudo apt-get install openconnect
+echo "### finished installing openconnect  ###"
