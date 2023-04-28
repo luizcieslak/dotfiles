@@ -20,10 +20,10 @@ sudo apt-get install firefox -y
 sudo apt-get update -y
 sudo apt-get install firefox -y
 
-sudo cp -rp firefox-83.0b1.tar.bz2 /opt
+sudo cp -rp firefox*.tar.bz2 /opt
 cd /opt
-sudo tar xjf firefox-83.0b1.tar.bz2
-sudo rm -rf firefox-67.0b10.tar.bz2
+sudo tar xjf firefox*.tar.bz2
+sudo rm -rf firefox*.tar.bz2
 
 sudo mv firefox firefox-dev
 sudo chown -R $USER /opt/firefox-dev
@@ -51,29 +51,24 @@ curl https://gist.githubusercontent.com/SanderTheDragon/1331397932abaa1d6fbbf63b
 echo "### finished installing postman ###"
 
 
-echo "### installing nvm, node 15.0.0 and 12.19.0 making 12 default ###"
+echo "### installing nvm, node 16 and making it default ###"
 
 curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh
 bash install_nvm.sh
 source ~/.profile
 
-nvm install 15
-nvm install 12.19.0
-
-nvm alias default 12.19.0
-
+nvm install 16
+nvm alias default 16
 nvm use default
 
 echo "### finished installing nvm ###"
 
 
 echo "### installing python 3.9 ###"
-
 sudo apt update -y
 sudo apt install software-properties-common -y
 sudo add-apt-repository ppa:deadsnakes/ppa -y
 sudo apt install python3.9 -y
-
 echo "### finished installing python ###"
 
 
@@ -132,14 +127,6 @@ sudo apt-get install -y gpick
 
 echo "### finished installing gpick ###"
 
-echo "### installing f.lux ###"
-
-sudo add-apt-repository ppa:nathan-renniewaldock/flux
-sudo apt-get update -y
-sudo apt-get install fluxgui -y
-
-echo "### finished installing f.lux ###"
-
 echo "### installing yarn ###"
 
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -148,3 +135,14 @@ sudo apt-get update -y
 sudo apt-get install yarn -y
 
 echo "### finished installing yarn ###"
+
+
+echo "### installing pnpm ###"
+wget -qO- https://get.pnpm.io/install.sh | sh -
+echo "### finished installing pnpm ###"
+
+echo "### installing spotify ###"
+curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update && sudo apt-get install spotify-client
+echo "### finished installing spotify ###"
