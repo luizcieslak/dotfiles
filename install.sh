@@ -152,3 +152,7 @@ sudo add-apt-repository ppa:openrazer/stable
 sudo apt update
 sudo apt install openrazer-meta
 echo "### finished installing openrazer  ###"
+
+echo "### installing gnome-shell-extensions  ###"
+sudo apt install gnome-shell-extensions
+echo "### finished installing gnome-shell-extensions  ###"
