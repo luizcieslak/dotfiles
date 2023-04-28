@@ -17,8 +17,7 @@ sudo apt-get update -y
 sudo apt-get install firefox-trunk -y
 sudo apt-get install firefox -y
 
-sudo apt-get update -y
-sudo apt-get install firefox -y
+wget "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=pt-BR" -O firefox-developer.tar.bz2
 
 sudo cp -rp firefox*.tar.bz2 /opt
 cd /opt
