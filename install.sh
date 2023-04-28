@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo "### installing curl ###"
+sudo apt install curl
+echo "### finished installing curl ###"
 
 echo "### installing chromium ###"
 sudo apt update -y
