@@ -9,7 +9,7 @@ module.exports = {
 		updateChannel: 'stable',
 
 		// default font size in pixels for all tabs
-		fontSize: 12,
+		fontSize: 14,
 
 		// font family with optional fallbacks
 		fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
@@ -22,7 +22,7 @@ module.exports = {
 		fontWeightBold: 'bold',
 
 		// line height as a relative unit
-		lineHeight: 1,
+		lineHeight: 1.25,
 
 		// letter spacing as a relative unit
 		letterSpacing: 0,
@@ -68,7 +68,7 @@ module.exports = {
 		showWindowControls: '',
 
 		// custom padding (CSS format, i.e.: `top right bottom left`)
-		padding: '12px 14px',
+		padding: '16px 16px',
 
 		// the full list. if you're going to provide the full color palette,
 		// including the 6 x 6 color cubes and the grayscale map, just provide
@@ -117,9 +117,9 @@ module.exports = {
 		// },
 
 		// hyperline settings
-		// hyperline: {
-		//   plugins: ['network', 'cpu', 'memory', 'battery'],
-		// },
+		hyperline: {
+			plugins: ['network', 'cpu', 'memory', 'battery'],
+		},
 
 		// the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
 		// if left empty, your system's login shell will be used by default
@@ -176,7 +176,7 @@ module.exports = {
 		'hyper-opacity',
 		'hyper-tabs-enhanced',
 		'hypercwd',
-		'hyperline',
+		// 'hyperline',
 		'hyperlinks',
 		'hyperlayout',
 	],

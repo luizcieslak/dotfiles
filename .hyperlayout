@@ -1,17 +1,21 @@
 {
-  "default": {
-    "entry": "vertical",
-    "layout": ["echo Hello", "echo World"]
-  },
   "bi": {
     "entry": "vertical",
-    "layout": ["cd bi/fenrir && yd", "bivpn"]
+    "layout": [
+      "cd bi/fenrir && yd",
+      "bivpn"
+    ]
   },
   "hove": [
-    [[
-      "cd hove && yk",
-      ["cd hove/packages/backend && yd", "cd hove/packages/cdk"]
-    ]],
+    [
+      [
+        "cd hove && yk",
+        [
+          "cd hove/packages/backend && yd",
+          "cd hove/packages/cdk"
+        ]
+      ]
+    ],
     "cd hove/packages/frontend && yd"
   ]
 }

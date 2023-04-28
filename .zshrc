@@ -9,6 +9,8 @@ export ZSH=$HOME/.oh-my-zsh
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+# https://github.com/denysdovhan/spaceship-prompt
+# ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -62,7 +64,8 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git yarn node npm git-flow)
+plugins=(yarn node zsh-auto-nvm-use)
+# plugins=(git yarn node npm git-flow)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,6 +98,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias rnra="react-native run-android"
+
 alias yyd="yarn && yarn dev"
 alias yd="yarn dev"
 alias yb="yarn build"
@@ -107,17 +111,38 @@ alias ytc="yarn test:coverage"
 alias ytw="yarn test:watch"
 alias yc="yarn clean"
 alias yz="yarn zip"
+
+# pnpm mirrored commands
+alias pi="pnpm i"
+alias ppd="pnpm i && pnpm dev"
+alias pd="pnpm dev"
+alias pb="pnpm build"
+alias ps="pnpm start"
+alias pts="pnpm ts:watch"
+alias pf="pnpm format"
+
+alias pt="pnpm test"
+alias ptc="pnpm test:coverage"
+alias ptw="pnpm test:watch"
+alias pc="pnpm clean"
+alias pz="pnpm zip"
+
 alias yk="yarn dev:cdk"
+alias ydf="yarn dev:frontend"
+alias ydb="yarn dev:backend"
+alias yda="yarn dev:full"
 
 alias nlb="npx lerna bootstrap"
 alias nlc="npx lerna clean"
 alias nlp="npx lerna publish"
 alias nlpp="npx lerna publish --cd-version patch"
+alias nlpr="npx lerna publish prerelease"
 alias nla="npx lerna add"
 alias lco="npx lerna run cy:open"
 alias yco="yarn cy:open"
+alias nco="npx cypress open"
 
-alias gk="SHELL=/bin/bash nohup gitkraken&"
+alias gk="SHELL=zsh nohup gitkraken&"
 
 alias ydl="yarn dev -H 0.0.0.0"
 
@@ -142,17 +167,33 @@ export JAVA_HOME
 PATH=$PATH:$JAVA_HOME
 export PATH
 
+# rn
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# deno 
+export DENO_INSTALL="/home/luiz/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 export PATH=$PATH:~/.local/bin
+
+# pip installed packages
+export PATH=$PATH:$HOME/.local/lib/python3.8/site-packages
 
 # firefox dev edition
 export PATH=/opt/firefox/firefox-dev:$PATH
 
-export NVM_DIR="/home/luizcieslak/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export NVM_NODEJS_ORG_MIRROR=https://nodejs.org/dist
+export PNPM_HOME="/home/luiz/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+eval "$(atuin init zsh)"
+
+. ~/z.sh
