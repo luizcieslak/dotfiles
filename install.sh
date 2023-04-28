@@ -6,14 +6,6 @@ sudo apt update -y
 sudo apt install chromium-browser -y
 echo "### finished installing chromium ###"
 
-
-echo "### installing chrome stable ###"
-wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-sudo apt-get update
-sudo apt install google-chrome-stable
-echo "### finished installing chrome stable ###"
-
 echo "### installing firefox(es) ###"
 
 sudo add-apt-repository ppa:ubuntu-mozilla-daily/ppa
@@ -151,3 +143,9 @@ curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get update && sudo apt-get install spotify-client
 echo "### finished installing spotify ###"
+
+echo "### installing masterpdf ###"
+curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update && sudo apt-get install spotify-client
+echo "### finished installing masterpdf ###"
