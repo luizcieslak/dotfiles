@@ -39,17 +39,7 @@ EOL
 
 echo "### finished installing firefox(es) ###"
 
-
-echo "### installing postman ###"
-
-# wget -O - https://gist.githubusercontent.com/SanderTheDragon/1331397932abaa1d6fbbf63baed5f043/raw/postman-deb.sh | sh
-curl https://gist.githubusercontent.com/SanderTheDragon/1331397932abaa1d6fbbf63baed5f043/raw/postman-deb.sh | sh
-
-echo "### finished installing postman ###"
-
-
 echo "### installing nvm, node 16 and making it default ###"
-
 curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh
 bash install_nvm.sh
 source ~/.profile
