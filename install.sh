@@ -75,7 +75,7 @@ echo "### finished installing deb files ###"
 echo "### installing unetbootin ###"
 
 sudo add-apt-repository ppa:gezakovacs/ppa
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install unetbootin -y
 
 echo "### finished installing unetbootin ###"
@@ -134,13 +134,13 @@ echo "### finished installing pnpm ###"
 echo "### installing spotify ###"
 curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update && sudo apt-get install spotify-client
+sudo apt-get update -y && sudo apt-get install spotify-client
 echo "### finished installing spotify ###"
 
 echo "### installing masterpdf ###"
 curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update && sudo apt-get install spotify-client
+sudo apt-get update -y && sudo apt-get install spotify-client
 echo "### finished installing masterpdf ###"
 
 echo "### installing flatpak  ###"
@@ -186,6 +186,6 @@ echo "### finished installing peek  ###"
 
 echo "### installing SSR (simple screen recording) ###"
 sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install simplescreenrecorder
 echo "### finished installing SSR  ###"
