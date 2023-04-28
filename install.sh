@@ -144,3 +144,11 @@ echo "### installing flatpak  ###"
 sudo apt install flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 echo "### finished installing flatpak  ###"
+
+echo "### installing openrazer  ###"
+sudo gpasswd -a $USER plugdev
+sudo apt install software-properties-gtk
+sudo add-apt-repository ppa:openrazer/stable
+sudo apt update
+sudo apt install openrazer-meta
+echo "### finished installing openrazer  ###"
