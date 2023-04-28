@@ -166,3 +166,11 @@ sudo add-apt-repository ppa:touchegg/stable
 sudo apt update
 sudo apt install touchegg
 echo "### finished installing touchegg  ###"
+
+echo "### installing atuin  ###"
+bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
+echo "### finished installing atuin  ###"
+
+echo "### installing z jumper  ###"
+curl -O https://raw.githubusercontent.com/rupa/z/master/z.sh
+echo "### finished installing z jumper  ###"
