@@ -178,3 +178,15 @@ echo "### finished installing z jumper  ###"
 echo "### installing openconnect VPN  ###"
 sudo apt-get install openconnect
 echo "### finished installing openconnect  ###"
+
+echo "### installing peek (gif recorder) ###"
+sudo add-apt-repository ppa:peek-developers/stable
+sudo apt update
+sudo apt install peek
+echo "### finished installing peek  ###"
+
+echo "### installing SSR (simple screen recording) ###"
+sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder
+sudo apt-get update
+sudo apt-get install simplescreenrecorder
+echo "### finished installing SSR  ###"
