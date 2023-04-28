@@ -2,7 +2,7 @@
 
 My dotfiles.
 
-**Current OS:** Ubuntu 20.04
+**Current OS:** Ubuntu 22.04
 
 Files added:
 
