@@ -37,6 +37,7 @@ Categories=Network;WebBrowser;Favorite;
 MimeType=text/html;text/xml;application/xhtml_xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp; X-Ayatana-Desktop-Shortcuts=NewWindow;NewIncognitos;
 EOL
 
+cd  ~/Downloads
 echo "### finished installing firefox(es) ###"
 
 echo "### installing nvm, node 16 and making it default ###"
