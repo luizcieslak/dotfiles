@@ -156,3 +156,9 @@ echo "### finished installing openrazer  ###"
 echo "### installing gnome-shell-extensions  ###"
 sudo apt install gnome-shell-extensions
 echo "### finished installing gnome-shell-extensions  ###"
+
+echo "### installing touchegg  ###"
+sudo add-apt-repository ppa:touchegg/stable
+sudo apt update
+sudo apt install touchegg
+echo "### finished installing touchegg  ###"
