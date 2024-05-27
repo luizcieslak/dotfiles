@@ -214,7 +214,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-# fnm
-export PATH="/home/luiz/.local/share/fnm:$PATH"
-eval "`fnm env`"
