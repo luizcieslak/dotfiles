@@ -151,6 +151,7 @@ alias ybs="yarn clean && yarn build && yarn serve"
 alias python=python3
 
 alias hlh="hyperlayout hove"
+alias hlp="hyperlayout hove-lp"
 alias hlb="hyperlayout bi"
 
 function mata {
@@ -197,3 +198,19 @@ export PATH="$PNPM_HOME:$PATH"
 eval "$(atuin init zsh)"
 
 . ~/z.sh
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/luiz/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/luiz/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/luiz/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/luiz/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
