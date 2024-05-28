@@ -4,43 +4,12 @@ echo "### installing curl ###"
 sudo apt install curl
 echo "### finished installing curl ###"
 
-echo "### installing chromium ###"
-sudo apt update -y
-sudo apt install chromium-browser -y
-echo "### finished installing chromium ###"
-
-echo "### installing firefox(es) ###"
-
+echo "### installing firefox nightly ###"
 sudo add-apt-repository ppa:ubuntu-mozilla-daily/ppa
-
 sudo apt-get update -y
 sudo apt-get install firefox-trunk -y
-sudo apt-get install firefox -y
-
-wget "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=pt-BR" -O firefox-developer.tar.bz2
-
-sudo cp -rp firefox*.tar.bz2 /opt
-cd /opt
-sudo tar xjf firefox*.tar.bz2
-sudo rm -rf firefox*.tar.bz2
-
-sudo mv firefox firefox-dev
-sudo chown -R $USER /opt/firefox-dev
-
-cat > ~/.local/share/applications/firefoxDeveloperEdition.desktop <<EOL
-[Desktop Entry]
-Encoding=UTF-8
-Name=Firefox Developer Edition
-Exec=/opt/firefox-dev/firefox
-Icon=/opt/firefox-dev/browser/chrome/icons/default/default128.png
-Terminal=false
-Type=Application
-Categories=Network;WebBrowser;Favorite;
-MimeType=text/html;text/xml;application/xhtml_xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp; X-Ayatana-Desktop-Shortcuts=NewWindow;NewIncognitos;
-EOL
-
 cd  ~/Downloads
-echo "### finished installing firefox(es) ###"
+echo "### finished installing firefox nightly ###"
 
 echo "### installing nvm, node 16 and making it default ###"
 curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh
