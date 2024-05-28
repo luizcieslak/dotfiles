@@ -88,11 +88,12 @@ echo "### installing gnome-shell-extensions  ###"
 sudo apt install gnome-shell-extensions
 echo "### finished installing gnome-shell-extensions  ###"
 
-echo "### installing touchegg  ###"
+echo "### installing touchegg and touche ###"
 sudo add-apt-repository ppa:touchegg/stable
 sudo apt update
 sudo apt install touchegg
-echo "### finished installing touchegg  ###"
+flatpak install --user https://flathub.org/repo/appstream/com.github.joseexposito.touche.flatpakref
+echo "### finished installing touchegg and touche ###"
 
 echo "### installing atuin  ###"
 bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
@@ -120,3 +121,4 @@ echo "### finished installing SSR  ###"
 
 echo "### fix window and linux dual boot time mismatch  ###"
 timedatectl set-local-rtc 1
+
