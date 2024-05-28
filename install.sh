@@ -53,13 +53,10 @@ git clone https://github.com/Sparragus/zsh-auto-nvm-use ~/.oh-my-zsh/custom/plug
 echo "### finished installing oh-my-zsh ###"
 
 echo "### copying my dotfiles ###"
-
 curl -LJO https://raw.githubusercontent.com/luizcieslak/dotfiles/master/.zshrc
 curl -LJO https://raw.githubusercontent.com/luizcieslak/dotfiles/master/.hyper.js
 curl -LJO https://raw.githubusercontent.com/luizcieslak/dotfiles/master/copy.sh | sh
-
-echo “source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh” >> ~/.zshrc
-echo "### copying installing  my dotfiles ###"
+echo "### copying installing my dotfiles ###"
 
 echo "### installing git ###"
 
