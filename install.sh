@@ -59,25 +59,19 @@ curl -LJO https://raw.githubusercontent.com/luizcieslak/dotfiles/master/copy.sh 
 echo "### copying installing my dotfiles ###"
 
 echo "### installing git ###"
-
 sudo apt-get install git-all -y
-
 echo "### finished installing git ###"
 
 echo "### installing gpick ###"
-
 sudo apt-get update -y
 sudo apt-get install -y gpick 
-
 echo "### finished installing gpick ###"
 
 echo "### installing yarn ###"
-
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update -y
 sudo apt-get install yarn -y
-
 echo "### finished installing yarn ###"
 
 
@@ -85,30 +79,10 @@ echo "### installing pnpm ###"
 wget -qO- https://get.pnpm.io/install.sh | sh -
 echo "### finished installing pnpm ###"
 
-echo "### installing spotify ###"
-curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update -y && sudo apt-get install spotify-client
-echo "### finished installing spotify ###"
-
-echo "### installing masterpdf ###"
-curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update -y && sudo apt-get install spotify-client
-echo "### finished installing masterpdf ###"
-
 echo "### installing flatpak  ###"
 sudo apt install flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 echo "### finished installing flatpak  ###"
-
-echo "### installing openrazer  ###"
-sudo gpasswd -a $USER plugdev
-sudo apt install software-properties-gtk
-sudo add-apt-repository ppa:openrazer/stable
-sudo apt update
-sudo apt install openrazer-meta
-echo "### finished installing openrazer  ###"
 
 echo "### installing gnome-shell-extensions  ###"
 sudo apt install gnome-shell-extensions
