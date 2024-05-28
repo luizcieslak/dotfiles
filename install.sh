@@ -119,6 +119,10 @@ sudo apt-get update -y
 sudo apt-get install simplescreenrecorder
 echo "### finished installing SSR  ###"
 
+echo "### installing pgadmin4 ###"
+sudo apt install pgadmin4
+echo "### finishedinstalling pgadmin4 ###"
+
 echo "### fix window and linux dual boot time mismatch  ###"
 timedatectl set-local-rtc 1
 
