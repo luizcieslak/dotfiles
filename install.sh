@@ -11,15 +11,12 @@ sudo apt-get install firefox-trunk -y
 cd  ~/Downloads
 echo "### finished installing firefox nightly ###"
 
-echo "### installing nvm, node 16 and making it default ###"
-curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh
-bash install_nvm.sh
+echo "### installing nvm, node 20 and making it default ###"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 source ~/.profile
-
-nvm install 16
-nvm alias default 16
+nvm install 20
+nvm alias default 20
 nvm use default
-
 echo "### finished installing nvm ###"
 
 
