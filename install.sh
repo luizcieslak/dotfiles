@@ -189,3 +189,6 @@ sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder
 sudo apt-get update -y
 sudo apt-get install simplescreenrecorder
 echo "### finished installing SSR  ###"
+
+echo "### fix window and linux dual boot time mismatch  ###"
+timedatectl set-local-rtc 1
