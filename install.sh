@@ -159,3 +159,5 @@ echo "### finished installing docker ###"
 echo "### fix window and linux dual boot time mismatch  ###"
 timedatectl set-local-rtc 1
 
+echo "### fixing any issues with deb install ###"
+sudo apt --fix-broken install
