@@ -28,36 +28,28 @@ sudo apt install python3.11 -y
 echo "### finished installing python ###"
 
 echo "### installing deb files ###"
-
 for i in *.deb;
 do
   echo "installing: $i"
   sudo dpkg -i $i
 done
-
 echo "### finished installing deb files ###"
 
 echo "### installing unetbootin ###"
-
 sudo add-apt-repository ppa:gezakovacs/ppa
 sudo apt-get update -y
 sudo apt-get install unetbootin -y
-
 echo "### finished installing unetbootin ###"
 
 echo "### installing zsh ###"
-
 sudo apt update -y
 sudo apt install zsh -y
-
 sudo usermod -s /usr/bin/zsh $(whoami)
-
 echo "### finished installing zsh ###"
 
 echo "### installing oh-my-zsh ###"
-
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
+git clone https://github.com/Sparragus/zsh-auto-nvm-use ~/.oh-my-zsh/custom/plugins/zsh-auto-nvm-use
 echo "### finished installing oh-my-zsh ###"
 
 echo "### copying my dotfiles ###"
