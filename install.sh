@@ -35,6 +35,11 @@ do
 done
 echo "### finished installing deb files ###"
 
+echo "### installing git ###"
+sudo apt-get install git-all -y
+git config --global core.autocrlf input
+echo "### finished installing git ###"
+
 echo "### installing unetbootin ###"
 sudo add-apt-repository ppa:gezakovacs/ppa
 sudo apt-get update -y
@@ -58,9 +63,16 @@ curl -LJO https://raw.githubusercontent.com/luizcieslak/dotfiles/master/.hyper.j
 curl -LJO https://raw.githubusercontent.com/luizcieslak/dotfiles/master/copy.sh | sh
 echo "### copying installing my dotfiles ###"
 
-echo "### installing git ###"
-sudo apt-get install git-all -y
-echo "### finished installing git ###"
+echo "### setting up hyperlayout ###"
+npm install -g hyperlayout hpm-cli
+hpm install hyperlayout
+hpm install hyper-active-tab
+hpm install hyper-highlight-active-pane
+hpm install hyper-opacity
+hpm install hyper-tabs-enhanced
+hpm install hypercwd
+hpm install hyperlinks
+echo "### finish setting up hyperlayout ###"
 
 echo "### installing gpick ###"
 sudo apt-get update -y
