@@ -61,7 +61,7 @@ echo "### copying my dotfiles ###"
 curl -LJO https://raw.githubusercontent.com/luizcieslak/dotfiles/master/.zshrc
 curl -LJO https://raw.githubusercontent.com/luizcieslak/dotfiles/master/.hyper.js
 curl -LJO https://raw.githubusercontent.com/luizcieslak/dotfiles/master/copy.sh | sh
-echo "### copying installing my dotfiles ###"
+echo "### finish copying my dotfiles ###"
 
 echo "### setting up hyperlayout ###"
 npm install -g hyperlayout hpm-cli
@@ -80,8 +80,6 @@ sudo apt-get install -y gpick
 echo "### finished installing gpick ###"
 
 echo "### installing yarn ###"
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update -y
 sudo apt-get install yarn -y
 echo "### finished installing yarn ###"
@@ -150,6 +148,7 @@ sudo apt update
 # Install the latest version of PostgreSQL:
 # If you want a specific version, use 'postgresql-16' or similar instead of 'postgresql'
 sudo apt -y install postgresql
+sudo apt install postgresql-client-common
 echo "### finished installing postgresql ###"
 
 echo "### installing docker ###"
