@@ -3,19 +3,18 @@
     "entry": "vertical",
     "layout": [
       "cd bi/fenrir && yd",
-      "bivpn"
-    ]
+      "cd bi/bifrost && yd"
+    ],
   },
   "hove": [
     [
       [
         "cd hove && yk",
         [
-          "cd hove/packages/backend && yd",
+          "cd hove/packages/frontend && yd",
           "cd hove/packages/cdk"
         ]
       ]
-    ],
-    "cd hove/packages/frontend && yd"
+    ]
   ]
 }
