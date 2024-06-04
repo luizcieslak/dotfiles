@@ -174,3 +174,7 @@ timedatectl set-local-rtc 1
 
 echo "### fixing any issues with deb install ###"
 sudo apt --fix-broken install
+
+echo "### fixing ENOSPC watchers system error###"
+# see: https://stackoverflow.com/a/55763478
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
