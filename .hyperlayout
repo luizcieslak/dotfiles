@@ -2,17 +2,17 @@
   "bi": {
     "entry": "vertical",
     "layout": [
-      "cd bi/fenrir && yd",
-      "cd bi/bifrost && yd"
-    ],
+      "cd ~/bi/fenrir && yd",
+      "cd ~/bi/bifrost && yd"
+    ]
   },
   "hove": [
     [
       [
-        "cd hove && yk",
+        "cd ~/hove && yk",
         [
-          "cd hove/packages/frontend && yd",
-          "cd hove/packages/cdk"
+          "cd ~/hove/packages/frontend && yd",
+          "cd ~/hove/packages/cdk"
         ]
       ]
     ]
