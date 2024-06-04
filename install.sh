@@ -1,11 +1,21 @@
 #!/bin/sh
 
+
+echo "### adding needed remote PPAs ###"
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo add-apt-repository ppa:gezakovacs/ppa
+sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder
+sudo add-apt-repository ppa:touchegg/stable
+sudo add-apt-repository ppa:ubuntu-mozilla-daily/ppa
+sudo add-apt-repository ppa:peek-developers/stable
+echo "### finish adding needed remote PPAs ###"
+
+
 echo "### installing curl ###"
 sudo apt install curl
 echo "### finished installing curl ###"
 
 echo "### installing firefox nightly ###"
-sudo add-apt-repository ppa:ubuntu-mozilla-daily/ppa
 sudo apt-get update -y
 sudo apt-get install firefox-trunk -y
 cd  ~/Downloads
@@ -23,7 +33,6 @@ echo "### finished installing nvm ###"
 echo "### installing python 3.11 ###"
 sudo apt update -y
 sudo apt install software-properties-common -y
-sudo add-apt-repository ppa:deadsnakes/ppa -y
 sudo apt install python3.11 -y
 echo "### finished installing python ###"
 
@@ -41,7 +50,6 @@ git config --global core.autocrlf input
 echo "### finished installing git ###"
 
 echo "### installing unetbootin ###"
-sudo add-apt-repository ppa:gezakovacs/ppa
 sudo apt-get update -y
 sudo apt-get install unetbootin -y
 echo "### finished installing unetbootin ###"
@@ -99,7 +107,6 @@ sudo apt install gnome-shell-extensions
 echo "### finished installing gnome-shell-extensions  ###"
 
 echo "### installing touchegg and touche ###"
-sudo add-apt-repository ppa:touchegg/stable
 sudo apt update
 sudo apt install touchegg
 flatpak install --user https://flathub.org/repo/appstream/com.github.joseexposito.touche.flatpakref
@@ -118,13 +125,11 @@ sudo apt-get install openconnect
 echo "### finished installing openconnect  ###"
 
 echo "### installing peek (gif recorder) ###"
-sudo add-apt-repository ppa:peek-developers/stable
 sudo apt update
 sudo apt install peek
 echo "### finished installing peek  ###"
 
 echo "### installing SSR (simple screen recording) ###"
-sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder
 sudo apt-get update -y
 sudo apt-get install simplescreenrecorder
 echo "### finished installing SSR  ###"
