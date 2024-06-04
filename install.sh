@@ -8,6 +8,7 @@ sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder
 sudo add-apt-repository ppa:touchegg/stable
 sudo add-apt-repository ppa:ubuntu-mozilla-daily/ppa
 sudo add-apt-repository ppa:peek-developers/stable
+sudo apt-get update -y
 echo "### finish adding needed remote PPAs ###"
 
 
@@ -31,7 +32,6 @@ echo "### finished installing nvm ###"
 
 
 echo "### installing python 3.11 ###"
-sudo apt update -y
 sudo apt install software-properties-common -y
 sudo apt install python3.11 -y
 echo "### finished installing python ###"
@@ -83,12 +83,10 @@ hpm install hyperlinks
 echo "### finish setting up hyperlayout ###"
 
 echo "### installing gpick ###"
-sudo apt-get update -y
 sudo apt-get install -y gpick 
 echo "### finished installing gpick ###"
 
 echo "### installing yarn ###"
-sudo apt-get update -y
 sudo apt-get install yarn -y
 echo "### finished installing yarn ###"
 
@@ -130,7 +128,6 @@ sudo apt install peek
 echo "### finished installing peek  ###"
 
 echo "### installing SSR (simple screen recording) ###"
-sudo apt-get update -y
 sudo apt-get install simplescreenrecorder
 echo "### finished installing SSR  ###"
 
