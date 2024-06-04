@@ -101,6 +101,7 @@ echo "### finished installing flatpak  ###"
 
 echo "### installing gnome-shell-extensions  ###"
 sudo apt install gnome-shell-extensions
+flatpak install flathub com.mattjakeman.ExtensionManager
 echo "### finished installing gnome-shell-extensions  ###"
 
 echo "### installing touchegg and touche ###"
