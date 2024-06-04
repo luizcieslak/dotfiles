@@ -11,7 +11,6 @@ sudo add-apt-repository ppa:peek-developers/stable
 sudo apt-get update -y
 echo "### finish adding needed remote PPAs ###"
 
-
 echo "### installing curl ###"
 sudo apt install curl
 echo "### finished installing curl ###"
