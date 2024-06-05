@@ -1,11 +1,15 @@
 {
-  "bi": {
-    "entry": "vertical",
-    "layout": [
-      "cd ~/bi/fenrir && yd",
-      "cd ~/bi/bifrost && yd"
-    ]
-  },
+  "bi": [
+    [
+      [
+        [
+          "cd ~/bi/fenrir && yd",
+          "cd ~/bi/bifrost && yd"
+        ]
+      ]
+    ],
+    "cd ~/bi/forseti && yd"
+  ],
   "hove": [
     [
       [
