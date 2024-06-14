@@ -8,6 +8,7 @@ sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder
 sudo add-apt-repository ppa:touchegg/stable
 sudo add-apt-repository ppa:ubuntu-mozilla-daily/ppa
 sudo add-apt-repository ppa:peek-developers/stable
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 sudo apt-get update -y
 echo "### finish adding needed remote PPAs ###"
 
@@ -134,6 +135,10 @@ echo "### finished installing SSR  ###"
 echo "### installing pgadmin4 ###"
 sudo apt install pgadmin4
 echo "### finishedinstalling pgadmin4 ###"
+
+echo "### installing grub customizer ###"
+sudo apt install grub-customizer
+echo "### finished installing grub customizer ###"
 
 echo "### installing postgresql ###"
 # Import the repository signing key:
