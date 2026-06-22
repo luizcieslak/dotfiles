@@ -1,0 +1,6 @@
+windows:
+  - layout: 24f3,211x50,0,0{105x50,0,0[105x25,0,0,1,105x24,0,26,2],105x50,106,0,3}
+    panes:
+      - cd ~/bi/fenrir && yd
+      - cd ~/bi/bifrost && yd
+      - cd ~/bi/forseti && yd

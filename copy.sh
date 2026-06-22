@@ -1,5 +1,7 @@
 #!/bin/sh
 cp .zshrc ~/.zshrc
-cp .hyper.js ~/.hyper.js
-cp .hyperlayout  ~/.hyperlayout
+mkdir -p ~/.config/Hyper
+cp hyper.json ~/.config/Hyper/hyper.json
+mkdir -p ~/.hyperinator
+cp .hyperinator/*.yml ~/.hyperinator/
 cp ssl.conf  ~/.ssl.conf

@@ -64,7 +64,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(yarn node zsh-auto-nvm-use)
+plugins=(node)
 # plugins=(git yarn node npm git-flow)
 
 source $ZSH/oh-my-zsh.sh
@@ -148,7 +148,6 @@ alias ydl="yarn dev -H 0.0.0.0"
 
 alias ybs="yarn clean && yarn build && yarn serve"
 
-alias python=python3
 
 alias hlh="hyperlayout hove"
 alias hlp="hyperlayout hove-lp"
@@ -192,12 +191,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export NVM_NODEJS_ORG_MIRROR=https://nodejs.org/dist
+
+# pnpm
 export PNPM_HOME="/home/luiz/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
-eval "$(atuin init zsh)"
-
-. ~/z.sh
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# end pnpm
 
 
 # >>> conda initialize >>>
@@ -214,3 +215,45 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# fnm
+FNM_PATH="/home/luiz/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
+fi
+
+# Safe-chain Zsh initialization script
+source /home/luiz/.safe-chain/scripts/init-posix.sh 
+
+# brew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+. "$HOME/.atuin/bin/env"
+export PATH="$PATH:$HOME/.atuin/bin"
+
+eval "$(atuin init zsh)"
+
+. ~/z.sh
+
+# hyperinator (Hyper layout plugin) loader.
+# The plugin's own bin/hyperinator is broken (requires js-yaml, which it never
+# installs) and assumes a v3 config path, so we reimplement its one job: print
+# the marker line that the plugin's Hyper-side middleware watches for.
+hyperinator() {
+  if [ "$1" != "load" ] || [ -z "$2" ]; then
+    echo "usage: hyperinator load <name>" >&2
+    return 1
+  fi
+  local cfg="$HOME/.hyperinator/$2.yml"
+  if [ ! -f "$cfg" ]; then
+    echo "hyperinator: no config at $cfg" >&2
+    return 1
+  fi
+  # The plugin only matches the marker on the FIRST line of a terminal-output
+  # chunk (data.split('\n')[0]). Clear the screen first (separate write), then
+  # sleep so the marker arrives as the first line of its own fresh chunk.
+  clear
+  sleep 0.15
+  print "[hyperinator config: $cfg]"
+}

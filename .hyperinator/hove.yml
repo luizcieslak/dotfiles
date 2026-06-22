@@ -1,0 +1,6 @@
+windows:
+  - layout: 73cd,211x50,0,0{105x50,0,0,1,105x50,106,0[105x25,106,0,2,105x24,106,26,3]}
+    panes:
+      - cd ~/hove && yk
+      - cd ~/hove/packages/frontend && yd
+      - cd ~/hove/packages/cdk

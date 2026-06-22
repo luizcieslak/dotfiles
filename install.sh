@@ -66,21 +66,18 @@ git clone https://github.com/Sparragus/zsh-auto-nvm-use ~/.oh-my-zsh/custom/plug
 echo "### finished installing oh-my-zsh ###"
 
 echo "### copying my dotfiles ###"
-curl -LJO https://raw.githubusercontent.com/luizcieslak/dotfiles/master/.zshrc
-curl -LJO https://raw.githubusercontent.com/luizcieslak/dotfiles/master/.hyper.js
-curl -LJO https://raw.githubusercontent.com/luizcieslak/dotfiles/master/copy.sh | sh
+# Clone the repo and run copy.sh so all dotfiles (incl. Hyper v4 config and
+# the .hyperinator layout configs) land in the right places.
+git clone https://github.com/luizcieslak/dotfiles.git ~/dotfiles
+cd ~/dotfiles && sh copy.sh && cd -
 echo "### finish copying my dotfiles ###"
 
-echo "### setting up hyperlayout ###"
-npm install -g hyperlayout hpm-cli
-hpm install hyperlayout
-hpm install hyper-active-tab
-hpm install hyper-highlight-active-pane
-hpm install hyper-opacity
-hpm install hyper-tabs-enhanced
-hpm install hypercwd
-hpm install hyperlinks
-echo "### finish setting up hyperlayout ###"
+echo "### setting up Hyper plugins ###"
+# Hyper v4 auto-installs the plugins listed in ~/.config/Hyper/hyper.json on
+# first launch (hyper-active-tab, hyper-highlight-active-pane, hyper-search,
+# hyper-opacity, hyper-tabs-enhanced, hypercwd, hyperlinks, hyperinator), so
+# no manual hpm/npm install step is needed. Just launch Hyper once.
+echo "### finish setting up Hyper plugins ###"
 
 echo "### installing gpick ###"
 sudo apt-get install -y gpick 
