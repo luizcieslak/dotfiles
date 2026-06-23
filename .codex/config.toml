@@ -1,0 +1,8 @@
+[projects."/home/luiz/hove"]
+trust_level = "trusted"
+
+[projects."/"]
+trust_level = "trusted"
+
+[projects."/home/luiz/bi/fenrir"]
+trust_level = "trusted"

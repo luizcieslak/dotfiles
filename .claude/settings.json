@@ -1,0 +1,15 @@
+{
+  "model": "opus",
+  "extraKnownMarketplaces": {
+    "lucasfcosta": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/lucasfcosta/backpressured.git"
+      }
+    }
+  },
+  "effortLevel": "medium",
+  "enabledPlugins": {
+    "backpressured@lucasfcosta": true
+  }
+}
