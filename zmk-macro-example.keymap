@@ -1,0 +1,58 @@
+/*
+ * ZMK Macro Examples for AKS068 Conversion
+ * This shows how to convert your Vial macros to ZMK format
+ */
+
+/ {
+    macros {
+        // Convert your "qwertyuip\n\n" macro from Vial
+        qwerty_macro: qwerty_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp Q &kp W &kp E &kp R &kp T &kp Y &kp U &kp I &kp P &kp RET &kp RET>;
+        };
+
+        // Example of a more complex macro with delays
+        bt_clear_macro: bt_clear_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = 
+                <&macro_press &kp LGUI>,
+                <&macro_tap &kp R>,
+                <&macro_release &kp LGUI>,
+                <&macro_wait_time 100>,
+                <&macro_tap &kp B &kp L &kp U &kp E &kp T &kp O &kp O &kp T &kp H &kp RET>;
+        };
+
+        // Simple text macro
+        email_macro: email_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp E &kp X &kp A &kp M &kp P &kp L &kp E &kp AT &kp E &kp X &kp A &kp M &kp P &kp L &kp E &kp DOT &kp C &kp O &kp M>;
+        };
+    };
+
+    behaviors {
+        // Custom behavior for 2.4G mode (if your keyboard supports it)
+        tog_24g: toggle_24g {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&out OUT_USB>, <&out OUT_BLE>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+        
+        base_layer {
+            bindings = <
+                // ... your existing keymap ...
+                // Example of using macros in your keymap:
+                &qwerty_macro  // Use the qwerty macro
+                &bt_clear_macro // Use the bluetooth clear macro
+                // ... rest of your layout ...
+            >;
+        };
+    };
+};
