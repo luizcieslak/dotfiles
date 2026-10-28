@@ -13,6 +13,15 @@ todo() { TODO="$TODO\n  - $1"; }
 fail() { FAILED="$FAILED\n  - $1"; echo "!!! failed: $1"; }
 step() { echo; echo "### $1 ###"; }
 have() { command -v "$1" >/dev/null 2>&1; }
+# Large downloads (Android Studio, the emulator) sometimes get their
+# connection reset midway; a fresh attempt usually goes through.
+retry() {
+  for _attempt in 1 2 3; do
+    "$@" && return 0
+    [ "$_attempt" = 3 ] || echo "retrying ($_attempt/3): $*"
+  done
+  return 1
+}
 
 load_brew() {
   for b in /opt/homebrew/bin/brew /usr/local/bin/brew; do
@@ -30,9 +39,9 @@ load_nvm() {
 brew_install() {
   # $1: formula, or "--cask name"
   if [ "$1" = --cask ]; then
-    brew list --cask "$2" >/dev/null 2>&1 || brew install --cask "$2" || fail "brew install --cask $2"
+    brew list --cask "$2" >/dev/null 2>&1 || retry brew install --cask "$2" || fail "brew install --cask $2"
   else
-    brew list "$1" >/dev/null 2>&1 || brew install "$1" || fail "brew install $1"
+    brew list "$1" >/dev/null 2>&1 || retry brew install "$1" || fail "brew install $1"
   fi
 }
 
@@ -52,7 +61,11 @@ else
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
 fi
 
-if have brew; then
+# brew refuses every command while the Xcode license is pending.
+if have brew && ! xcrun clang --version >/dev/null 2>&1; then
+  todo "accept the Xcode license (brew refuses to run until you do), then re-run this script:
+      sudo xcodebuild -license accept"
+elif have brew; then
   step "brew packages"
   for f in git atuin shellcheck watchman cocoapods openjdk@17; do brew_install "$f"; done
   brew_install --cask android-studio
@@ -108,9 +121,11 @@ if [ -x "$HOME/miniforge3/bin/conda" ]; then
   echo "already installed"
 else
   tmp=$(mktemp -d)
-  curl -fsSL -o "$tmp/miniforge.sh" \
-    "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-$(uname -m).sh" \
-    && bash "$tmp/miniforge.sh" -b -p "$HOME/miniforge3" || fail "miniforge"
+  if ! { retry curl -fsSL -o "$tmp/miniforge.sh" \
+           "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-$(uname -m).sh" \
+         && bash "$tmp/miniforge.sh" -b -p "$HOME/miniforge3"; }; then
+    fail "miniforge"
+  fi
   rm -rf "$tmp"
 fi
 
@@ -130,11 +145,12 @@ if [ -x "$JDK/bin/java" ]; then
     ver=$(curl -fsSL https://dl.google.com/android/repository/repository2-1.xml \
       | sed -n 's/.*commandlinetools-mac-\([0-9]*\)_latest.zip.*/\1/p' | sort -n | tail -1)
     tmp=$(mktemp -d)
-    curl -fsSL -o "$tmp/clt.zip" "https://dl.google.com/android/repository/commandlinetools-mac-${ver}_latest.zip" \
-      && unzip -q "$tmp/clt.zip" -d "$tmp" \
-      && mkdir -p "$ANDROID_HOME/cmdline-tools" \
-      && mv "$tmp/cmdline-tools" "$ANDROID_HOME/cmdline-tools/latest" \
-      || fail "android cmdline-tools"
+    if ! { retry curl -fsSL -o "$tmp/clt.zip" "https://dl.google.com/android/repository/commandlinetools-mac-${ver}_latest.zip" \
+           && unzip -q "$tmp/clt.zip" -d "$tmp" \
+           && mkdir -p "$ANDROID_HOME/cmdline-tools" \
+           && mv "$tmp/cmdline-tools" "$ANDROID_HOME/cmdline-tools/latest"; }; then
+      fail "android cmdline-tools"
+    fi
     rm -rf "$tmp"
   fi
   if [ -x "$sdkmanager" ]; then
@@ -146,10 +162,15 @@ if [ -x "$JDK/bin/java" ]; then
     # uses the newest level that has one.
     img_api=$(echo "$list" | sed -n "s/^ *system-images;android-\([0-9][0-9]*\);google_apis;$abi .*/\1/p" | sort -n | tail -1)
     image="system-images;android-$img_api;google_apis;$abi"
-    "$sdkmanager" platform-tools emulator "platforms;android-$api" "$image" >/dev/null || fail "sdkmanager"
+    # One package per call: sdkmanager drops the whole batch when one
+    # download fails, so the big system image would hold the rest back.
+    for pkg in platform-tools emulator "platforms;android-$api" "$image"; do
+      retry "$sdkmanager" "$pkg" >/dev/null || fail "sdkmanager $pkg"
+    done
     avdmanager="$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager"
     avd="Pixel_API_$img_api"
-    if ! "$avdmanager" list avd -c 2>/dev/null | grep -qx "$avd"; then
+    if [ -f "$ANDROID_HOME/system-images/android-$img_api/google_apis/$abi/package.xml" ] \
+      && ! "$avdmanager" list avd -c 2>/dev/null | grep -qx "$avd"; then
       echo no | "$avdmanager" create avd -n "$avd" -k "$image" -d pixel_7 >/dev/null || fail "create AVD $avd"
     fi
     echo "android-$api, AVDs: $("$avdmanager" list avd -c 2>/dev/null | tr '\n' ' ')"
