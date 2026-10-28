@@ -10,6 +10,11 @@ Files added:
 - hyper config
 - prettier
 - install.sh (Ubuntu only)
+- install-macos.sh (macOS): Homebrew packages, oh-my-zsh, nvm + Node LTS,
+  pnpm/yarn, safe-chain, Miniforge (conda), atuin, z, Docker Desktop and the
+  React Native toolchain (JDK 17, Android SDK + emulator, watchman, CocoaPods,
+  Xcode checks). Safe to re-run; steps needing your password or Apple ID are
+  printed at the end with the command to run.
 - Claude Code config (`.claude/settings.json` + hand-authored skills)
 
 ## Skills

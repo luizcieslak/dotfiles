@@ -161,30 +161,44 @@ function mata {
 REACT_EDITOR=code
 
 
-#Java
-JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-export JAVA_HOME
-PATH=$PATH:$JAVA_HOME
-export PATH
+# brew (first, so nvm/conda/pnpm below take precedence on PATH)
+for _brew in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+  if [ -x "$_brew" ]; then
+    eval "$("$_brew" shellenv)"
+    break
+  fi
+done
+unset _brew
+
+#Java (JDK 17 for react native: brew's openjdk@17 on macOS)
+if [ -n "$HOMEBREW_PREFIX" ] && [ -d "$HOMEBREW_PREFIX/opt/openjdk@17" ]; then
+  export JAVA_HOME="$HOMEBREW_PREFIX/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+  export PATH="$JAVA_HOME/bin:$PATH"
+elif [ -d /usr/lib/jvm/java-11-openjdk-amd64 ]; then
+  export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+  export PATH=$PATH:$JAVA_HOME/bin
+fi
 
 # rn
-export ANDROID_HOME=$HOME/Android/Sdk
+if [ "$(uname)" = Darwin ]; then
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+else
+  export ANDROID_HOME=$HOME/Android/Sdk
+fi
 export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-# deno 
-export DENO_INSTALL="/home/luiz/.deno"
+# deno
+export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 export PATH=$PATH:~/.local/bin
 
-# pip installed packages
-export PATH=$PATH:$HOME/.local/lib/python3.8/site-packages
-
 # firefox dev edition
-export PATH=/opt/firefox/firefox-dev:$PATH
+[ -d /opt/firefox/firefox-dev ] && export PATH=/opt/firefox/firefox-dev:$PATH
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -193,48 +207,49 @@ export NVM_DIR="$HOME/.nvm"
 export NVM_NODEJS_ORG_MIRROR=https://nodejs.org/dist
 
 # pnpm
-export PNPM_HOME="/home/luiz/.local/share/pnpm"
+if [ "$(uname)" = Darwin ]; then
+  export PNPM_HOME="$HOME/Library/pnpm"
+else
+  export PNPM_HOME="$HOME/.local/share/pnpm"
+fi
 case ":$PATH:" in
-  *":$PNPM_HOME/bin:"*) ;;
-  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # end pnpm
 
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/luiz/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/luiz/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/luiz/anaconda3/etc/profile.d/conda.sh"
+# conda (miniforge, miniconda or anaconda, whichever is installed)
+for _conda in "$HOME/miniforge3" "$HOME/miniconda3" "$HOME/anaconda3"; do
+  if [ -x "$_conda/bin/conda" ]; then
+    __conda_setup="$("$_conda/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+    elif [ -f "$_conda/etc/profile.d/conda.sh" ]; then
+      . "$_conda/etc/profile.d/conda.sh"
     else
-        export PATH="/home/luiz/anaconda3/bin:$PATH"
+      export PATH="$_conda/bin:$PATH"
     fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+    unset __conda_setup
+    break
+  fi
+done
+unset _conda
 
 # fnm
-FNM_PATH="/home/luiz/.local/share/fnm"
+FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "$(fnm env --shell zsh)"
 fi
 
 # Safe-chain Zsh initialization script
-source /home/luiz/.safe-chain/scripts/init-posix.sh 
+[ -f "$HOME/.safe-chain/scripts/init-posix.sh" ] && source "$HOME/.safe-chain/scripts/init-posix.sh"
 
-# brew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# atuin (installer puts it in ~/.atuin; brew puts it on PATH)
+[ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
+command -v atuin >/dev/null && eval "$(atuin init zsh)"
 
-. "$HOME/.atuin/bin/env"
-export PATH="$PATH:$HOME/.atuin/bin"
-
-eval "$(atuin init zsh)"
-
-. ~/z.sh
+[ -f ~/z.sh ] && . ~/z.sh
 
 # hyperinator (Hyper layout plugin) loader.
 # The plugin's own bin/hyperinator is broken (requires js-yaml, which it never
